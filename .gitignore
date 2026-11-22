@@ -56,3 +56,7 @@ __pycache__/
 
 # created by `kaggle datasets init`
 /weights/dataset-metadata.json
+
+# local movie lists for repro/07_infer_local.sh
+/*.txt
+!/requirements.txt

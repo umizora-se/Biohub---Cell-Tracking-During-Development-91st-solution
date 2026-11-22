@@ -69,10 +69,11 @@ Created by the scripts and not tracked by git: `.venv/`, `ref_royerlab/` (metric
 
 ## Requirements
 
-- Linux with an NVIDIA GPU. Developed on Ubuntu (WSL2) with an RTX 5080 (16 GB), CUDA 12.8.
-- [uv](https://docs.astral.sh/uv/) and Python 3.12.
-- Kaggle API credentials (`~/.config/kaggle/kaggle.json`), with the competition rules accepted.
-- About 90 GB of free disk space for the data, plus room for intermediate files.
+- **Kaggle account and API token.**
+  - Create a token under *Settings → API → Create New Token* on kaggle.com, and save it as `~/.config/kaggle/kaggle.json` (or `~/.kaggle/kaggle.json`).
+  - Open the [competition page](https://www.kaggle.com/competitions/biohub-cell-tracking-during-development) and accept the rules (*Join Competition* / *Late Submission*); otherwise the data download is refused.
+- **[uv](https://docs.astral.sh/uv/) and git.** `00_setup.sh` installs Python 3.12 and all packages into `.venv/`.
+- **For local runs:** Linux with an NVIDIA GPU (developed on Ubuntu/WSL2 with an RTX 5080 16 GB, CUDA 12.8), and about 90 GB of free disk for the data plus about 30 GB for intermediate files.
 
 ## Quick start
 
@@ -80,15 +81,17 @@ Created by the scripts and not tracked by git: `.venv/`, `ref_royerlab/` (metric
 git clone <this-repository-url> biohub-solution
 cd biohub-solution
 repro/00_setup.sh        # .venv with pinned packages (requirements.txt) + official metric repository
-repro/01_download.sh     # competition data -> data/ (~83 GB), public base-notebook weights -> inputs/
 ```
 
-Then follow either:
+Then choose what you want to do:
 
-- **Inference only:** use the submitted weights in `weights/`. See [Inference](#inference).
-- **Full reproduction:** retrain all weights, then run inference with them. See [Training](#training).
+| Goal | Steps | Local GPU | Data download |
+|---|---|---|---|
+| Reproduce the submission on Kaggle with the submitted weights | `00` → [Inference on Kaggle](#on-kaggle-as-submitted) | no | no |
+| Run the submission locally | `00`, `01` → [Local inference](#locally) | yes | yes (~83 GB) |
+| Retrain everything, then run inference | `00`, `01` → [Training](#training) `02`–`06` → inference with `build/weights` | yes | yes (~83 GB) |
 
-The competition data is **not** included in this repository; `01_download.sh` fetches it from Kaggle.
+`repro/01_download.sh` downloads the competition data into `data/` and the public weights of the base notebook into `inputs/`. The competition data is **not** included in this repository.
 
 ## Inference
 
@@ -119,13 +122,18 @@ repro/07_infer_local.sh final_et07                    # submitted weights (weigh
 repro/07_infer_local.sh final_et07 build/weights      # weights you trained yourself
 ```
 
-This runs the notebook end to end on training movies mounted as the test set (default: the 98 movies in `pipe/eval98.txt`). It writes `pipe/exps/infer_final_et07/kaggle/working/submission.csv` and scores it against the ground truth. An optional third argument gives a different movie list. For example, the four movies of the public test set (`44b6_0113de3b 44b6_0b24845f 6bba_05b6850b 6bba_05db0fb1`, copies of training movies) take about 5 minutes, and the default 98 movies about 100 minutes on an RTX 5080.
+This runs the notebook end to end on training movies mounted as the test set (default: the 98 movies in `pipe/eval98.txt`). It writes `pipe/exps/infer_final_et07/kaggle/working/submission.csv` and scores it against the ground truth. An optional third argument is a text file with the movie names to run. For a quick check, use the four movies of the public test set (copies of training movies). This takes about 5 minutes, and the default 98 movies take about 100 minutes on an RTX 5080:
+
+```bash
+printf "44b6_0113de3b\n44b6_0b24845f\n6bba_05b6850b\n6bba_05db0fb1\n" > test4.txt
+repro/07_infer_local.sh final_et07 weights test4.txt
+```
 
 All three notebooks were run this way with the weights in `weights/`. The score on training movies is optimistic, because the division classifier was trained on them (final_et07 on the 98 movies: 0.9519, vs. 0.9231 for the base pipeline). Use it to check that the pipeline works, not as a validation score.
 
 ## Training
 
-After the [Quick start](#quick-start), run the steps in order:
+After `repro/00_setup.sh` and `repro/01_download.sh`, run the steps in order:
 
 ```bash
 repro/02_base.sh     # base notebook on 98 training movies
