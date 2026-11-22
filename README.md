@@ -78,8 +78,8 @@ Created by the scripts and not tracked by git: `.venv/`, `ref_royerlab/` (metric
 ## Quick start
 
 ```bash
-git clone <this-repository-url> biohub-solution
-cd biohub-solution
+git clone https://github.com/umizora-se/Biohub---Cell-Tracking-During-Development-91st-solution.git
+cd Biohub---Cell-Tracking-During-Development-91st-solution
 repro/00_setup.sh        # .venv with pinned packages (requirements.txt) + official metric repository
 ```
 
