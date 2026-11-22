@@ -1,0 +1,19 @@
+ref,fileName,date,description,status,publicScore,privateScore
+56679396,submission.csv,2026-09-29 14:52:58.133000,et07 + 5-seed ExtraTrees (LGB/ET 30:70) thr0.3 p0.05,SubmissionStatus.COMPLETE,0.96957,0.93048
+56661666,submission.csv,2026-09-29 03:43:00.323000,v3 + FLOW_ITER=3 + divclf retrained on iter3 graph (LGB/ET 50:50) thr0.3 p0.05,SubmissionStatus.COMPLETE,0.96878,0.93429
+56660528,submission.csv,2026-09-29 02:50:02.230000,v3 + FLOW_ITER=3 + divclf retrained on iter3 graph (LGB/ET 30:70) thr0.3 p0.05,SubmissionStatus.COMPLETE,0.96814,0.93358
+56658783,submission.csv,2026-09-29 01:36:56.233000,v3 + FLOW_ITER=3 + divclf LGB/ExtraTrees 30:70 thr0.3 p0.05,SubmissionStatus.COMPLETE,0.97027,0.92865
+56647720,submission.csv,2026-09-28 17:13:48.293000,v3 + FLOW_ITER=3 + divclf LGB/ExtraTrees 50:50 thr0.3 p0.05,SubmissionStatus.COMPLETE,0.96969,0.92782
+56647067,submission.csv,2026-09-28 16:42:08.260000,"v3 (divclf3 thr0.4 p0.05) + MOTION_RELINK_FLOW_ITER=3, deadline 36000",SubmissionStatus.COMPLETE,0.96654,0.92261
+56630232,submission.csv,2026-09-28 05:32:43.450000,"cell-state ILP a0.8 rho0.5 fp16 + readd forks (motion relink kept) + divclf mix(v3+readd-retrained) thr0.4 p0.05, deadline 36000",SubmissionStatus.COMPLETE,0.96580,0.93514
+56622563,submission.csv,2026-09-28 00:01:39.830000,"cell-state ILP a0.8 rho0.5 fp16, no motion relink, divclf3 thr0.4 p0.05 sanitized, deadline 30000",SubmissionStatus.COMPLETE,0.96482,0.92638
+56609327,submission.csv,2026-09-27 13:04:54.127000,cell-state ILP a0.8 (csilp-nomr) + divclf3 thr0.4 p0.05,SubmissionStatus.COMPLETE,0.96572,0.92543
+56595176,submission.csv,2026-09-27 02:17:53.357000,MIN_TRACK_LEN=4 + divclf3 thr0.4 prune0.05,SubmissionStatus.COMPLETE,0.96570,0.92283
+56595172,submission.csv,2026-09-27 02:17:51.017000,0.953 base + divclf3 thr0.237 cap12 prune0.1 (more adds),SubmissionStatus.COMPLETE,0.96353,0.92092
+56592170,submission.csv,2026-09-27 00:03:24.633000,0.953 base + divclf3 conservative (thr0.68 cap8 prune0.1),SubmissionStatus.COMPLETE,0.96355,0.91826
+56591876,submission.csv,2026-09-27 00:01:14.023000,"0.953 base + divclf3 prune-only (pthr0.1, no adds)",SubmissionStatus.COMPLETE,0.95675,0.91515
+56586690,submission.csv,2026-09-26 18:52:52.603000,"0.953 base + divclf3 (CNN cell-state + LGB, thr0.4, prune0.05)",SubmissionStatus.COMPLETE,0.96672,0.92258
+56585906,submission.csv,2026-09-26 18:04:49.210000,0.953 base (MIN_TRACK_LEN=6) + divclf2 thr0.4,SubmissionStatus.COMPLETE,0.95611,0.91951
+56583657,submission.csv,2026-09-26 16:04:16.487000,0.953 base + MIN_TRACK_LEN=4 + divclf2 (temporal feats) thr0.4,SubmissionStatus.COMPLETE,0.95509,0.91979
+56583002,submission.csv,2026-09-26 15:32:41.667000,0.953 base + MIN_TRACK_LEN=4 + divclf thr0.4,SubmissionStatus.COMPLETE,0.94868,0.91707
+56576855,submission.csv,2026-09-26 10:26:48.280000,0.953 base + OUTPUT_MIN_TRACK_LEN=4,SubmissionStatus.COMPLETE,0.95285,0.91823

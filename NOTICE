@@ -1,0 +1,39 @@
+Biohub – Cell Tracking During Development: 91st place solution
+Copyright 2026 the contributors of this repository
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party material
+--------------------
+
+1. Base notebook
+   nb/biohub-0-953-lb-original/ is an unmodified copy of the public Kaggle notebook
+   "Biohub 0.953 LB | ORIGINAL" by anvithpothula
+   (https://www.kaggle.com/code/anvithpothula/biohub-0-953-lb-original),
+   released on Kaggle under the Apache 2.0 open source license.
+   It builds on public work and weights by Pilkwang Kim (https://www.kaggle.com/pilkwang).
+
+2. Modified files
+   notebooks/*/notebook.ipynb are modified versions of that notebook. The modifications are:
+   - configuration overrides appended to the first code cell;
+   - the configuration-drift guard in the second code cell changed from an error to a message;
+   - additional code cells inserted (sub/cells_final/): a learned division model and, for
+     best_private_readd_mix, a cell-state-aware ILP;
+   - for best_private_readd_mix, a post-processing patch (sub/replaces/csilp_pp.py).
+   sub/build_notebooks.py rebuilds them from the unmodified copy.
+
+3. Public weights (not included)
+   The base pipeline's detection and edge-scoring weights are downloaded from the Kaggle datasets
+   pilkwang/biohub-deepcenter-unet3d-center-prior-v1, pilkwang/biohub-temporal-unet3d-seed314159-v1,
+   pilkwang/biohub-tracking-support-pack-50ep-v1 and anvithpothula/biohub-v1284-head-s075
+   by repro/01_download.sh, under the terms of those datasets.
+
+4. Metric (not included)
+   pipe/score_csv.py uses the official metric of the organizers' repository
+   https://github.com/royerlab/kaggle-cell-tracking-competition (BSD-3-Clause),
+   cloned by repro/00_setup.sh.
+
+5. Competition data (not included)
+   The weights in weights/ were trained on the data of the Kaggle competition
+   "Biohub – Cell Tracking During Development", which is released under CC0: Public Domain.
+   The data is not redistributed here; download it from the competition page.
